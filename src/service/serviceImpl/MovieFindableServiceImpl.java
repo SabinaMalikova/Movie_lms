@@ -7,6 +7,7 @@ import enums.Genre;
 import service.MovieFindableService;
 
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -25,9 +26,8 @@ public class MovieFindableServiceImpl  implements MovieFindableService  {
                     return movie;
                 }
             }
-        }catch (NoSuchElementException e){
-            System.out.println(" Не найдено! ");
-
+        } catch (NullPointerException | NoSuchElementException e){
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -42,10 +42,9 @@ public class MovieFindableServiceImpl  implements MovieFindableService  {
                     }
                 }
             }
-        }catch (NoSuchElementException e){
-            System.out.println(" Не найдено! ");
+        }catch (NullPointerException | NoSuchElementException e){
+            System.out.println(e.getMessage());
         }
-
         return null;
     }
 
@@ -57,8 +56,8 @@ public class MovieFindableServiceImpl  implements MovieFindableService  {
                     return movie;
                 }
             }
-        }catch (NoSuchElementException e) {
-            System.out.println(" Не найдено! ");
+        }catch (NullPointerException | NoSuchElementException e){
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -71,8 +70,8 @@ public class MovieFindableServiceImpl  implements MovieFindableService  {
                     return movie;
                 }
             }
-        }catch (NoSuchElementException e){
-            System.out.println(" Не найдено! ");
+        }catch (NullPointerException | NoSuchElementException e){
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -85,8 +84,8 @@ public class MovieFindableServiceImpl  implements MovieFindableService  {
                     return movie;
                 }
             }
-        }catch (NoSuchElementException e){
-            System.out.println(" Не найдено! ");
+        }catch (NullPointerException | NoSuchElementException e){
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -101,8 +100,8 @@ public class MovieFindableServiceImpl  implements MovieFindableService  {
                     }
                 }
             }
-        }catch (NoSuchElementException e){
-            System.out.println(" Не найдено! ");
+        }catch (NullPointerException | NoSuchElementException e){
+            System.out.println(e.getMessage());
         }
         return null;
     }

@@ -7,8 +7,8 @@ import service.serviceImpl.MovieFindableServiceImpl;
 import service.serviceImpl.MovieSortableServiceImpl;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -54,12 +54,6 @@ public class Main {
         Producer producerTitanic = new Producer("Джэймс", "Кэмерон");
         Producer producerIdentification = new Producer("Стюарт", "Бессер");
 
-        List<Producer>producers = new ArrayList<>();
-        producers.add(producerPrada);
-        producers.add(producerIdentification);
-        producers.add(producerCruella);
-        producers.add(producerTitanic);
-
 
         List<Movie> movies = Arrays.asList(
                 new Movie("Круэлла", LocalDate.of(2021, 5, 25), Genre.КОМЕДИЯ, producerCruella, actorsCruella),
@@ -70,90 +64,94 @@ public class Main {
 
 
         while (true) {
-            System.out.println("           Возможные действия: \n" +
-                    "1.  Посмотреть предоставленные фильмы. \n" +
-                    "2.  Найти фильм по названию. \n" +
-                    "3.  Найти фильм по имени актора.\n" +
-                    "4.  Найти фильм по дате выхода фильма.\n" +
-                    "5.  Найти фильм по имени продюсера.\n" +
-                    "6.  Найти фильм по жанру.\n" +
-                    "7.  Найти фильм по роли.\n" +
-                    "            Сортировка: \n" +
-                    "8.  Сортировка фильмов: Алфавит\n" +
-                    "9.  Сортировка фильмов: Дате релиза .\n" +
-                    "10. Сортировка фильмов: \n" +
-                    "11. Выйти. \n" +
-                    "            Введите свой выбор: ");
-            switch (scannerNum.nextInt()) {
-                case 1: {
-                    System.out.println("            Фильмы: ");
-                    System.out.println(DataBaseMovie.movies);
-                    break;
-                }
-                case 2: {
-                    System.out.println("Введите название фильма: ");
-                    String movieName = scannerStr.nextLine();
-                    System.out.println(movieFindableService.findMovieByFullNameOrPartName(movieName));
-                    break;
-                }
-                case 3: {
-                    System.out.println("Введите имя актера: ");
-                    String actorName = scannerStr.nextLine();
-                    System.out.println(movieFindableService.findMovieByActorName(actorName));
-                    break;
-                }
-                case 4: {
-                    System.out.println("Введите дату релиза фильма: ");
-                    System.out.println(movieFindableService.findMovieByYear(LocalDate.of(scannerNum.nextInt(), scannerNum.nextInt(), scannerNum.nextInt())));
-                    break;
-                }
-                case 5: {
-                    System.out.println("Введите имя продюсера:");
-                    String produceName = scannerStr.nextLine();
-                    System.out.println(movieFindableService.findMovieByProducer(produceName));
-                    break;
-                }
-                case 6: {
-                    System.out.println("Введите жанр: Драма, Комедия, Детектив ");
-                    Genre genre = Genre.valueOf(scannerStr.nextLine());
-                    System.out.println(movieFindableService.findMovieByGenre(genre));
-                    break;
-                }
-                case 7: {
-                    System.out.println("Введите роль: ");
-                    String roleName = scannerStr.nextLine();
-                    System.out.println(movieFindableService.findMovieByRole(roleName));
-                    break;
-                }
-                case 8: {
-                    System.out.println("Выберите:\n" +
-                            "1) в алфавитном порядке\n" +
-                            "2) в алфавитном порядке наборот ");
-                    String choice = scannerStr.nextLine();
-                    movieSortableService.sortMovieByName(choice);
-                    break;
-                }
-                case 9: {
-                    System.out.println("Выберите \n" +
-                            "1) Старые \n" +
-                            "2) Новые ");
-                    String choice = scannerStr.nextLine();
-                    movieSortableService.sortByYear(choice);
-                    break;
-                }
-                case 10: {
-                    System.out.println("Sort by name or last name? (firstname/lastname)");
-                    movieSortableService.sortByProducer(scannerStr.nextLine());
-                    break;
-                }
+            try {
+                System.out.println("           Возможные действия: \n" +
+                        "1.  Посмотреть предоставленные фильмы. \n" +
+                        "2.  Найти фильм по названию. \n" +
+                        "3.  Найти фильм по имени актера.\n" +
+                        "4.  Найти фильм по дате выхода фильма.\n" +
+                        "5.  Найти фильм по имени продюсера.\n" +
+                        "6.  Найти фильм по жанру.\n" +
+                        "7.  Найти фильм по роли.\n" +
+                        "            Сортировка: \n" +
+                        "8.  Сортировка фильмов: Алфавит\n" +
+                        "9.  Сортировка фильмов: Дате релиза .\n" +
+                        "10. Сортировка фильмов: \n" +
+                        "11. Выйти. \n" +
+                        "            Введите свой выбор: ");
+                switch (scannerNum.nextInt()) {
+                    case 1: {
+                        System.out.println("            Фильмы: ");
+                        System.out.println(DataBaseMovie.movies);
+                        break;
+                    }
+                    case 2: {
+                        System.out.println("Введите название фильма: ");
+                        String movieName = scannerStr.nextLine();
+                        System.out.println(movieFindableService.findMovieByFullNameOrPartName(movieName));
+                        break;
+                    }
+                    case 3: {
+                        System.out.println("Введите имя актера: ");
+                        String actorName = scannerStr.nextLine();
+                        System.out.println(movieFindableService.findMovieByActorName(actorName));
+                        break;
+                    }
+                    case 4: {
+                        System.out.println("Введите дату релиза фильма: ");
+                        System.out.println(movieFindableService.findMovieByYear(LocalDate.of(scannerNum.nextInt(), scannerNum.nextInt(), scannerNum.nextInt())));
+                        break;
+                    }
+                    case 5: {
+                        System.out.println("Введите имя продюсера:");
+                        String produceName = scannerStr.nextLine();
+                        System.out.println(movieFindableService.findMovieByProducer(produceName));
+                        break;
+                    }
+                    case 6: {
+                        System.out.println("Введите жанр: Драма, Комедия, Детектив ");
+                        Genre genre = Genre.valueOf(scannerStr.nextLine());
+                        System.out.println(movieFindableService.findMovieByGenre(genre));
+                        break;
+                    }
+                    case 7: {
+                        System.out.println("Введите роль: ");
+                        String roleName = scannerStr.nextLine();
+                        System.out.println(movieFindableService.findMovieByRole(roleName));
+                        break;
+                    }
+                    case 8: {
+                        System.out.println("Выберите:\n" +
+                                "1) в алфавитном порядке\n" +
+                                "2) в алфавитном порядке наборот ");
+                        String choice = scannerStr.nextLine();
+                        movieSortableService.sortMovieByName(choice);
+                        break;
+                    }
+                    case 9: {
+                        System.out.println("Выберите \n" +
+                                "1) Старые \n" +
+                                "2) Новые ");
+                        String choice = scannerStr.nextLine();
+                        movieSortableService.sortByYear(choice);
+                        break;
+                    }
+                    case 10: {
+                        System.out.println("Sort by name or last name? (firstname/lastname)");
+                        movieSortableService.sortByProducer(scannerStr.nextLine());
+                        break;
+                    }
 
-                case 11: {
-                    System.out.println("Хорошего вам дня! ");
-                    return;
+                    case 11: {
+                        System.out.println("Хорошего вам дня! ");
+                        return;
+                    }
+                    default: {
+                        System.err.println("Такой опции нет.");
+                    }
                 }
-                default: {
-                    System.err.println("Такой опции нет.");
-                }
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
