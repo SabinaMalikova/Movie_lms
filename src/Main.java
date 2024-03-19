@@ -7,6 +7,7 @@ import service.serviceImpl.MovieFindableServiceImpl;
 import service.serviceImpl.MovieSortableServiceImpl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -52,6 +53,12 @@ public class Main {
         Producer producerPrada = new Producer("Дэвид", "Френкель");
         Producer producerTitanic = new Producer("Джэймс", "Кэмерон");
         Producer producerIdentification = new Producer("Стюарт", "Бессер");
+
+        List<Producer>producers = new ArrayList<>();
+        producers.add(producerPrada);
+        producers.add(producerIdentification);
+        producers.add(producerCruella);
+        producers.add(producerTitanic);
 
 
         List<Movie> movies = Arrays.asList(
